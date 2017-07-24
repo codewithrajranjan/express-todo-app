@@ -49,6 +49,19 @@ module.exports = {
             res.json({code : "taskDeleted",data : result});
             
         });
+    },
+    updateTaskStatusById : function(req,res){
+        var taskId = req.params.taskId;
+        var taskStatus = req.params.taskStatus;
+        connection.query('UPDATE task SET status=? where id=?',[taskStatus,taskId],function(err,result,fields){
+            if(err){
+                throw err;
+            }
+            res.status(200);
+            res.json({code : "taskUpdated",data : result});
+            
+
+        });
     }
 
 

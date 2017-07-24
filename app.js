@@ -29,6 +29,9 @@ app.get('/task/id/:taskId',taskController.getTaskById);
 // Delete task by id
 app.delete('/task/id/:taskId',taskController.deleteTaskById);
 
+// Update task status by id
+app.put('/task/id/:taskId/status/:taskStatus',taskController.updateTaskStatusById);
+
 
 
 // this wrapper is only for testing purpose

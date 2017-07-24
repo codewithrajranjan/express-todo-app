@@ -6,20 +6,19 @@ var app = require('../app');
 
 
 // describing the test suite
-describe('Create a task',function(){
+describe('Update task status by id',function(){
     
-    var newTask = {
-        task : "Need to create an angular todo app",
-        status : 'active',
-        createdAt : new Date()
-    };
     //test case
-    it('If task is not given then it should throw error',function(done){
+    it('Update task status by id',function(done){
+        var taskId = 12;
+        var taskStatus = 'done';
         request(app) 
-        .post('/task')
-        .send(newTask)
+        .put('/task/id/'+taskId+'/status/'+taskStatus)
         .then(function(response){
             expect(response.status).to.equal(200);
+            var responseData = response.body;
+            console.log(responseData);
+            expect(responseData.code).to.equal('taskUpdated');
             done();
         })
         .catch(function(error){
